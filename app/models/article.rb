@@ -1,7 +1,13 @@
 class Article < ApplicationRecord
+	require 'active_storage_validations'
+
 	has_many :comments
 	has_many :taggings
 	has_many :tags, through: :taggings
+	
+	has_one_attached :image
+    validates :image, attached: true,
+                    content_type: ['image/png', 'image/jpg', 'image/jpeg']
 
 	def tag_list
 		tags.join(", ")

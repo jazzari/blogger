@@ -6,6 +6,14 @@
 	<% end %>
 </p>
 
+
+<p>
+  	<%= image_tag(@article.image) if @article.image.attached? %>
+  		
+</p>
+ 	
+
+
 <p><%= @article.body %></p>
 
 <%= render partial: 'comments/form' %>
