@@ -6,13 +6,10 @@
 	<% end %>
 </p>
 
-
 <p>
-  	<%= image_tag(@article.image) if @article.image.attached? %>
-  		
+  	<%= image_tag(@article.image) if @article.image.attached? %> 		
 </p>
  	
-
 
 <p><%= @article.body %></p>
 
@@ -23,10 +20,12 @@
 <h3>Comments (<%= @article.comments.size %>)</h3>
 <%= render partial: 'articles/comment', collection: @article.comments %>
 
-<p>
+<% if logged_in? %>
+  <p>
 	<%= link_to "edit", edit_article_path(@article) %>
-</p>
-<p>
+  </p>
+  <p>
   <%= link_to "delete", article_path(@article), method: :delete,
-     data: {confirm: "Really delete the article?"} %>
-</p>
+          data: {confirm: "Really delete the article?"} %>
+  </p>
+<% end %>
